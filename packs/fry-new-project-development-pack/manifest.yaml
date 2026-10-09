@@ -1,0 +1,57 @@
+name: fry-new-project-development-pack
+version: 0.1.0
+status: architecture-skeleton
+purpose: >
+  Reusable Codex project-development routing layer that combines engineering
+  restraint, visual direction, UX/workflow design, and optional creative modules
+  without loading overlapping design directors by default.
+
+core:
+  - id: ponytail
+    type: plugin
+    role: engineering-restraint
+    default: true
+    source: https://github.com/DietrichGebert/ponytail
+
+  - id: anthropic-frontend-design
+    type: agent-skill
+    role: visual-direction
+    default: true
+    source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
+
+  - id: impeccable
+    type: design-harness
+    role: ux-workflow-and-design-qa
+    default: routed
+    source: https://github.com/pbakaus/impeccable
+
+optional:
+  - id: brandkit
+    role: brand-identity
+    source: https://github.com/Leonxlnx/taste-skill/tree/main/skills/brandkit
+
+  - id: anthropic-canvas-design
+    role: static-visual-artifacts
+    source: https://github.com/anthropics/skills/tree/main/skills/canvas-design
+
+  - id: remotion-best-practices
+    role: video-and-motion-composition
+    source: https://github.com/remotion-dev/skills/tree/main/skills/remotion-best-practices
+
+specialist:
+  - id: taste-skill
+    role: landing-pages-portfolios-experimental-marketing
+    source: https://github.com/Leonxlnx/taste-skill
+    default_with_anthropic_frontend_design: false
+
+routing:
+  workflow_or_information_architecture: impeccable
+  visual_direction: anthropic-frontend-design
+  implementation_restraint: ponytail
+  post_build_review:
+    - impeccable:critique
+    - impeccable:audit
+    - impeccable:polish
+  branding: brandkit
+  static_artwork: anthropic-canvas-design
+  video: remotion-best-practices
