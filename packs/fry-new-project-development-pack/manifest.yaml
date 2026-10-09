@@ -1,6 +1,6 @@
 name: fry-new-project-development-pack
-version: 0.1.0
-status: architecture-skeleton
+version: 0.2.0
+status: installer-layer
 purpose: >
   Reusable Codex project-development routing layer that combines engineering
   restraint, visual direction, UX/workflow design, and optional creative modules
