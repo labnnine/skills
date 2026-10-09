@@ -34,6 +34,6 @@ See [AGENTS.md](./AGENTS.md) for the routing contract and [SOURCES.md](./SOURCES
 
 ## Status
 
-**v0.1 — architecture skeleton**
+**v0.2 — installer layer**
 
-This repository intentionally does not vendor third-party skill contents yet. It records upstream sources and routing so skills can be installed or updated from their original maintainers.
+This repository intentionally does not vendor third-party skill contents yet. It records upstream sources and routing, and now includes cross-platform installers for the Core stack plus per-project bootstrap scripts.
