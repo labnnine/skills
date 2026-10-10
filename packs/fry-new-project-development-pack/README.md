@@ -1,5 +1,7 @@
 # FRY New Project Development Pack
 
+> **最簡單使用方法：每次開新 Codex project，只要先跑一次 FRY bootstrap，之後直接同 Codex 講你想整乜；唔使逐個 skill 開關。**
+
 A reusable Codex development stack for starting and improving new software projects without loading every design or engineering instruction at once.
 
 ## Core idea
