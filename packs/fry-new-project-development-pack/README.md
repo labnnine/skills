@@ -2,6 +2,31 @@
 
 > **最簡單使用方法：每次開新 Codex project，只要先跑一次 FRY bootstrap，之後直接同 Codex 講你想整乜；唔使逐個 skill 開關。**
 
+### Copy-paste prompt for Codex
+
+If you do not remember the setup steps, paste this into Codex from the new project's root:
+
+```text
+Set up this project with my FRY New Project Development Pack.
+
+Source:
+https://github.com/labnnine/skills/tree/fry-new-project-development-pack/packs/fry-new-project-development-pack
+
+Do the following:
+1. Read the pack's README.md, INSTALL.md, AGENTS.md, manifest.yaml and SOURCES.md.
+2. Check whether the Core stack is already available on this machine:
+   - Ponytail
+   - Anthropic frontend-design
+   - Impeccable
+3. If any Core component is missing, install it using the pack's documented installer for this operating system.
+4. Bootstrap the current project using the pack's project bootstrap script.
+5. Do not overwrite an existing AGENTS.md. Preserve existing project rules and integrate the FRY routing rules safely.
+6. Do not enable optional modules unless the current project actually needs them.
+7. Confirm when the project is ready, and tell me only if a manual trust step such as /hooks is still required.
+
+After setup, use FRY routing automatically. I should only need to describe what I want to build; do not ask me to manually toggle individual skills unless there is a real conflict.
+```
+
 A reusable Codex development stack for starting and improving new software projects without loading every design or engineering instruction at once.
 
 ## Core idea
