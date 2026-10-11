@@ -25,7 +25,7 @@ $version = "0.3.0"
 
 Write-Host "`n==> Installing / refreshing Ponytail"
 & codex plugin marketplace add DietrichGebert/ponytail 2>$null
-& codex plugin marketplace upgrade 2>$null
+& codex plugin marketplace upgrade ponytail 2>$null
 & codex plugin add ponytail@ponytail 2>$null
 
 Write-Host "`n==> Installing reviewed Anthropic frontend-design"
