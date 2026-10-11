@@ -25,7 +25,7 @@ marker="$project/.fry-development-pack.yaml"
 if [ -e "$marker" ]; then
   echo "Pack marker already exists. Left unchanged: $marker"
 else
-  printf "%s\n"     "pack: fry-new-project-development-pack"     "version: 0.2.0"     "routing:"     "  engineering_restraint: ponytail"     "  visual_direction: anthropic-frontend-design"     "  ux_workflow_quality: impeccable"     "optional_modules: []" > "$marker"
+  printf "%s\n"     "pack: fry-new-project-development-pack"     "version: 0.3.0"     "routing:"     "  engineering_restraint: ponytail"     "  visual_direction: anthropic-frontend-design"     "  ux_workflow_quality: impeccable"     "optional_modules: []" > "$marker"
   echo "Created: $marker"
 fi
 
