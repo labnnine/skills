@@ -1,10 +1,21 @@
 name: fry-new-project-development-pack
-version: 0.2.1
-status: capability-registry-expanded
+version: 0.3.0
+status: global-source-of-truth
 purpose: >
-  Reusable Codex development environment that routes work to a small set of
-  approved core capabilities and installs optional capabilities only when the
-  current task genuinely needs them.
+  GitHub-backed machine-global Codex development environment. Core capabilities
+  are installed once per machine, a global router is injected into Codex, and
+  approved optional capabilities are installed only when the current task
+  genuinely needs them.
+
+global:
+  source_of_truth: https://github.com/labnnine/skills
+  branch: fry-new-project-development-pack
+  pack_path: packs/fry-new-project-development-pack
+  router_source: global/AGENTS.md
+  router_target: $CODEX_HOME/AGENTS.md
+  local_state: $CODEX_HOME/fry-pack.yaml
+  user_skills_dir: $HOME/.agents/skills
+  updater_skill: fry-update
 
 core:
   - id: ponytail
