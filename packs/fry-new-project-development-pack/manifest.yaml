@@ -1,10 +1,10 @@
 name: fry-new-project-development-pack
-version: 0.2.0
-status: installer-layer
+version: 0.2.1
+status: capability-registry-expanded
 purpose: >
-  Reusable Codex project-development routing layer that combines engineering
-  restraint, visual direction, UX/workflow design, and optional creative modules
-  without loading overlapping design directors by default.
+  Reusable Codex development environment that routes work to a small set of
+  approved core capabilities and installs optional capabilities only when the
+  current task genuinely needs them.
 
 core:
   - id: ponytail
@@ -12,37 +12,104 @@ core:
     role: engineering-restraint
     default: true
     source: https://github.com/DietrichGebert/ponytail
+    reviewed_ref: 9b58c1ffb790c075ca32e70a89cf1d80588f4abf
 
   - id: anthropic-frontend-design
     type: agent-skill
     role: visual-direction
     default: true
     source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
+    reviewed_ref: dbd4588f9e1033efb41dad4bef2f7947c8993d44
 
   - id: impeccable
     type: design-harness
     role: ux-workflow-and-design-qa
     default: routed
     source: https://github.com/pbakaus/impeccable
+    reviewed_ref: d631a8827f99414d2b6daba4ef08b7f8701751d7
 
 optional:
   - id: brandkit
+    type: agent-skill
     role: brand-identity
+    approved: true
+    install_policy: on-demand
     source: https://github.com/Leonxlnx/taste-skill/tree/main/skills/brandkit
 
   - id: anthropic-canvas-design
+    type: agent-skill
     role: static-visual-artifacts
+    approved: true
+    install_policy: on-demand
     source: https://github.com/anthropics/skills/tree/main/skills/canvas-design
 
   - id: remotion-best-practices
+    type: agent-skill
     role: video-and-motion-composition
+    approved: true
+    install_policy: on-demand
     source: https://github.com/remotion-dev/skills/tree/main/skills/remotion-best-practices
+
+  - id: scroll-world
+    type: agent-skill
+    role: immersive-scroll-scrubbed-landing-pages
+    approved: true
+    install_policy: on-demand
+    source: https://github.com/oso95/scroll-world
+    reviewed_ref: 71cc36d3bb150248ae36a2c552f9cbf88802a79c
+    notes:
+      - Requires external media-generation tooling for the full pipeline.
+      - May incur image/video generation costs.
+      - Do not activate for ordinary web UI.
 
 specialist:
   - id: taste-skill
+    type: agent-skill
     role: landing-pages-portfolios-experimental-marketing
+    approved: true
+    install_policy: on-demand
     source: https://github.com/Leonxlnx/taste-skill
     default_with_anthropic_frontend_design: false
+
+  - id: agency-agents
+    type: agent-library
+    role: specialist-personas
+    approved: true
+    install_policy: curated-only
+    source: https://github.com/msitarzewski/agency-agents
+    reviewed_ref: f99f6aa910a442b0197b768ce0ea7751e35e2060
+    rules:
+      - Never install the whole roster by default.
+      - Select only roles that add a distinct capability for the current project.
+      - Avoid personas that duplicate Ponytail or an already-selected specialist.
+
+pilot:
+  - id: cognee
+    type: memory-platform
+    role: persistent-agent-memory-and-knowledge-graph
+    approved_for_pilot: true
+    auto_install: false
+    source: https://github.com/topoteretes/cognee
+    reviewed_ref: 0ec7a9fa61c9ff04bf7e02e0d57af363a993a5e1
+    reason: >
+      Strong fit for long-running projects and cross-session memory, but memory
+      capture, stale knowledge, privacy, hooks, and deletion behavior must be
+      validated before promotion to Core.
+
+external_tools:
+  - id: voicebox
+    type: workstation-tool
+    role: local-voice-io-tts-stt-and-mcp
+    tracked: true
+    auto_install: false
+    source: https://github.com/jamiepine/voicebox
+
+  - id: omniroute
+    type: infrastructure-tool
+    role: multi-model-provider-routing
+    tracked: true
+    auto_install: false
+    source: https://github.com/diegosouzapw/OmniRoute
 
 routing:
   workflow_or_information_architecture: impeccable
@@ -55,3 +122,6 @@ routing:
   branding: brandkit
   static_artwork: anthropic-canvas-design
   video: remotion-best-practices
+  immersive_scroll_site: scroll-world
+  specialist_persona: agency-agents
+  persistent_memory: cognee:pilot
