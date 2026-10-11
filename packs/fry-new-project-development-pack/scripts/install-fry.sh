@@ -15,7 +15,7 @@ version="0.3.0"
 
 say "Installing / refreshing Ponytail"
 codex plugin marketplace add DietrichGebert/ponytail >/dev/null 2>&1 || true
-codex plugin marketplace upgrade >/dev/null 2>&1 || true
+codex plugin marketplace upgrade ponytail >/dev/null 2>&1 || true
 codex plugin add ponytail@ponytail >/dev/null 2>&1 || true
 
 say "Installing reviewed Anthropic frontend-design"
