@@ -1,70 +1,81 @@
 # Installation
 
-FRY New Project Development Pack separates machine-wide setup from per-project bootstrap.
+FRY v0.3 is machine-global. Install it once on each Mac or Windows machine that runs Codex.
 
-## 1. Install the Core stack once per machine
-
-macOS / Linux:
-
-    bash scripts/install-core.sh
-
-Windows PowerShell:
-
-    powershell -ExecutionPolicy Bypass -File .\scripts\install-core.ps1
-
-The installer configures:
-
-1. Ponytail through Codex's plugin marketplace.
-2. Anthropic Frontend Design as a user-wide Agent Skill under ~/.agents/skills/frontend-design.
-3. Impeccable user-wide for Codex, without installing a project hook.
-
-Requirements: Codex CLI, Git, and Node.js / npx.
-
-## 2. Complete the Codex trust step
-
-Ponytail installs lifecycle hooks. After installation:
-
-1. Open Codex.
-2. Open /hooks.
-3. Review and trust Ponytail's two lifecycle hooks.
-4. Start a new thread.
-
-Impeccable is installed globally without hooks because its Codex hook is project-local.
-
-## 3. Bootstrap a new project
+## Install from a FRY pack checkout
 
 macOS / Linux:
 
-    bash scripts/bootstrap-project.sh /path/to/project
+    bash scripts/install-fry.sh
 
 Windows PowerShell:
 
-    .\scripts\bootstrap-project.ps1 -ProjectPath "C:\path\to\project"
+    powershell -ExecutionPolicy Bypass -File .\scripts\install-fry.ps1
 
-This copies the FRY project AGENTS.md template only if the project does not already have one. Existing project instructions are never overwritten.
+The installer:
 
-## 4. Optional: enable Impeccable's project hook
+1. installs / refreshes Ponytail;
+2. installs the reviewed Anthropic frontend-design skill user-wide;
+3. installs Impeccable user-wide for Codex without a project hook;
+4. installs the FRY-owned fry-update skill;
+5. inserts or refreshes a delimited FRY block in the user's global Codex AGENTS.md without deleting unrelated global instructions;
+6. writes the installed version to the Codex home directory.
 
-Inside the project:
+Default locations:
 
-    npx impeccable install --providers=codex --scope=project
+- Global instructions: `$CODEX_HOME/AGENTS.md` (normally `~/.codex/AGENTS.md`)
+- FRY state: `$CODEX_HOME/fry-pack.yaml`
+- User-wide skills: `~/.agents/skills/`
 
-Then open /hooks in Codex and review/approve the project hook.
+## Manual trust
 
-## 5. Verify
+Ponytail includes lifecycle hooks. After first install or a material update:
 
-In a fresh Codex thread:
+1. open Codex;
+2. open `/hooks`;
+3. review and trust the hooks you want to allow;
+4. start a new Codex thread so the global instructions are rebuilt.
 
-- confirm Ponytail reports its active mode;
-- open /skills and confirm frontend-design and impeccable are available;
-- for a UI project, try $impeccable or ask Codex to use the frontend-design skill.
+FRY does not bypass this trust step.
 
-## Updating
+## Update an existing machine
 
-The installer refreshes the reviewed core components.
+After FRY v0.3 is installed, simply ask Codex:
 
-- Existing frontend-design is backed up before replacement.
-- Ponytail and Impeccable use their upstream installers.
-- Review upstream changes and changed hook definitions before trusting them.
+    Update FRY
 
-See SOURCES.md for provenance and update policy.
+The `fry-update` skill will sync from the GitHub source of truth.
+
+You can also run the updater manually.
+
+macOS / Linux:
+
+    bash scripts/update-fry.sh
+
+Windows PowerShell:
+
+    powershell -ExecutionPolicy Bypass -File .\scripts\update-fry.ps1
+
+## New projects
+
+No FRY bootstrap is required for ordinary projects. The machine-global router is loaded automatically by Codex before the project instructions.
+
+Use a project `AGENTS.md` only when the repository has domain-specific rules, constraints, required workflows, or exceptions.
+
+The legacy bootstrap scripts remain available only as a convenience for creating the project-specific AGENTS.md template.
+
+## Optional capabilities
+
+Approved optional modules are not installed merely because they are listed in the pack. The global router may install an approved on-demand capability when the current task clearly needs it.
+
+Pilot and tracked external tools are never auto-installed.
+
+## Project-level Impeccable hook
+
+The global Impeccable skill works without a project hook. If a specific UI project benefits from automatic detector feedback, run inside that project:
+
+    npx impeccable@4.5.2 install --providers=codex --scope=project
+
+Then review the project hook in `/hooks`.
+
+See SOURCES.md and manifest.yaml for provenance, reviewed references, routing and install policy.
