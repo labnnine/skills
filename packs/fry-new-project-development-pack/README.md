@@ -1,66 +1,99 @@
 # FRY New Project Development Pack
 
-> **最簡單使用方法：每次開新 Codex project，只要先跑一次 FRY bootstrap，之後直接同 Codex 講你想整乜；唔使逐個 skill 開關。**
+> **最簡單使用方法：每部 Mac / Windows 只需安裝 FRY 一次。之後開任何新 Codex project，直接講你想整乜；Global Router 會自動揀相關 skills。**
 
-### Copy-paste prompt for Codex
-
-If you do not remember the setup steps, paste this into Codex from the new project's root:
+## New machine — copy-paste once into Codex
 
 ```text
-Set up this project with my FRY New Project Development Pack.
+Install my machine-global FRY Development Environment from this source of truth:
 
-Source:
 https://github.com/labnnine/skills/tree/fry-new-project-development-pack/packs/fry-new-project-development-pack
 
-Do the following:
-1. Read the pack's README.md, INSTALL.md, AGENTS.md, manifest.yaml and SOURCES.md.
-2. Check whether the Core stack is already available on this machine:
-   - Ponytail
-   - Anthropic frontend-design
-   - Impeccable
-3. If any Core component is missing, install it using the pack's documented installer for this operating system.
-4. Bootstrap the current project using the pack's project bootstrap script.
-5. Do not overwrite an existing AGENTS.md. Preserve existing project rules and integrate the FRY routing rules safely.
-6. Do not enable optional modules unless the current project actually needs them.
-7. Confirm when the project is ready, and tell me only if a manual trust step such as /hooks is still required.
+This is NOT a project-local setup.
 
-After setup, use FRY routing automatically. I should only need to describe what I want to build; do not ask me to manually toggle individual skills unless there is a real conflict.
+Read README.md, INSTALL.md, manifest.yaml, SOURCES.md and global/AGENTS.md.
+Use the installer for this operating system to:
+- install or refresh the approved Core stack;
+- apply the FRY Global Router to my user-level Codex AGENTS.md while preserving unrelated existing global instructions;
+- install the fry-update skill;
+- record the installed FRY version.
+
+Do not auto-install pilot or external tools.
+Do not install optional modules unless they are already required by the current task.
+Do not bypass manual trust, hook, credential, paid-service, or security prompts.
+
+When finished, tell me only what manual action still remains, such as reviewing /hooks.
 ```
 
-A reusable Codex development stack for starting and improving new software projects without loading every design or engineering instruction at once.
+## Existing machine — update
 
-## Core idea
+In Codex, say:
 
-This pack is a router, not a prompt dump. Each tool keeps a distinct job:
+```text
+Update FRY
+```
 
-1. **Ponytail** — engineering restraint: prefer the simplest sufficient implementation, reuse existing capabilities, avoid unnecessary abstraction.
-2. **Anthropic Frontend Design** — visual direction: intentional layout, typography, colour, hierarchy, and anti-template frontend design.
-3. **Impeccable** — product UX and design QA: workflow shaping, information architecture, critique, audit, accessibility, hardening, and polish.
+The installed `fry-update` skill will sync the machine-global environment from this GitHub pack.
 
-The core tools are complementary, but should not all take ownership of the same decision.
+## Everyday use
 
-## Optional modules
+For a normal new project, **there is no FRY activation prompt**. Just describe the project.
 
-- **Brandkit** — brand identity and visual-world exploration.
-- **Anthropic Canvas Design** — posters, static artwork, key visuals, and other non-UI visual artifacts.
-- **Remotion Best Practices** — video and motion-composition work.
-- **Taste Skill** — specialist option for landing pages, portfolios, and experimental marketing sites. It is not a default companion to Anthropic Frontend Design.
+Example:
 
-## Default routing
+```text
+I want to build an internal tool that imports Excel files, classifies job levels, and shows a review dashboard.
+```
 
-For a new product or internal tool:
+Codex should read the machine-global FRY Router, inspect available skill metadata, and route only to relevant capabilities.
 
-1. Clarify product truth and constraints.
-2. Use **Impeccable / shape** when workflow, information architecture, user flow, or product UX is unclear.
-3. Use **Anthropic Frontend Design** when visual direction or frontend aesthetic needs to be established.
-4. Keep **Ponytail** as the implementation restraint layer.
-5. After implementation, use **Impeccable critique → audit → polish** as appropriate.
-6. Invoke optional modules only when the deliverable actually needs them.
+## Core
 
-See [AGENTS.md](./AGENTS.md) for the routing contract and [SOURCES.md](./SOURCES.md) for upstream projects.
+1. **Ponytail** — engineering restraint.
+2. **Anthropic Frontend Design** — visual direction.
+3. **Impeccable** — workflow/UX, information architecture, audit and polish.
+
+## Approved on-demand capabilities
+
+- **Brandkit** — brand identity.
+- **Anthropic Canvas Design** — static artwork / key visuals.
+- **Remotion Best Practices** — video and motion composition.
+- **Scroll World** — immersive cinematic scroll-scrubbed landing pages.
+- **Taste Skill** — specialist marketing/portfolio frontend alternative.
+- **Agency Agents** — curated specialist personas; never install the whole roster by default.
+
+## Pilot / tracked tools
+
+- **Cognee** — pilot persistent-memory layer. Not auto-installed yet.
+- **Voicebox** — tracked local voice I/O workstation tool.
+- **OmniRoute** — tracked multi-model routing infrastructure.
+
+## Architecture
+
+```text
+GitHub FRY Pack (source of truth)
+        |
+        +-- manifest.yaml
+        +-- global/AGENTS.md
+        +-- skills/fry-update/
+        +-- scripts/
+        |
+        v
+Machine
+        |
+        +-- ~/.codex/AGENTS.md       FRY Global Router block
+        +-- ~/.codex/fry-pack.yaml   installed version/state
+        +-- ~/.agents/skills/        user-wide skills
+        +-- Codex plugins            e.g. Ponytail
+        |
+        v
+All Codex projects on that machine
+```
+
+Project-specific `AGENTS.md` remains optional and is for domain/business rules that should override the generic global defaults.
+
+See [INSTALL.md](./INSTALL.md) for installation/update details, [AGENTS.md](./AGENTS.md) for the full routing contract, and [SOURCES.md](./SOURCES.md) for upstream provenance.
 
 ## Status
 
-**v0.2 — installer layer**
-
-This repository intentionally does not vendor third-party skill contents yet. It records upstream sources and routing, and now includes cross-platform installers for the Core stack plus per-project bootstrap scripts.
+**v0.3 — GitHub Source of Truth + Global Router + FRY Updater**
