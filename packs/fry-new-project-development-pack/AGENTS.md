@@ -105,6 +105,30 @@ Treat as a specialist alternative for landing pages, portfolios, marketing pages
 
 Do **not** load Taste Skill and Anthropic Frontend Design together by default. Pick one primary visual director unless the user explicitly asks to compare or combine approaches.
 
+### Scroll World
+
+Use only for immersive, cinematic, scroll-scrubbed landing pages where the continuous-world effect is a deliberate project requirement.
+
+Before using the full generation pipeline, surface external tooling and generation-cost requirements. Do not route ordinary websites to Scroll World.
+
+### Agency Agents
+
+Use as a curated specialist bench, not as a default agent swarm.
+
+Select the smallest set of distinct specialist roles needed for the task. Never install or activate the full roster by default, and avoid roles that merely duplicate Ponytail or the current core design tools.
+
+### Cognee — pilot only
+
+Cognee is a candidate persistent-memory layer for long-running projects.
+
+Do not auto-install or enable it yet. It must first pass a FRY pilot covering memory capture, stale/incorrect knowledge, privacy, deletion, hook behavior, and project separation.
+
+### Voicebox and OmniRoute
+
+These are tracked environment/infrastructure tools rather than normal project skills.
+
+Do not auto-install them. Route to Voicebox only when local voice I/O is explicitly useful, and to OmniRoute only when multi-provider/model routing is an explicit infrastructure requirement.
+
 ## Anti-conflict rules
 
 - One primary visual director per task.
