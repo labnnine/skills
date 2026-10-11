@@ -30,7 +30,7 @@ if (Test-Path $marker) {
 else {
     $markerContent = @(
         "pack: fry-new-project-development-pack",
-        "version: 0.2.0",
+        "version: 0.3.0",
         "routing:",
         "  engineering_restraint: ponytail",
         "  visual_direction: anthropic-frontend-design",
