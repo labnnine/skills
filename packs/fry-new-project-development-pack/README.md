@@ -1,5 +1,9 @@
 # FRY New Project Development Pack
 
+> **MOVED:** FRY Development Environment now lives in the standalone repository: https://github.com/labnnine/fry-development-environment
+>
+> This copy is retained only as historical migration material. Do not use it as the source of truth.
+
 > **最簡單使用方法：每部 Mac / Windows 只需安裝 FRY 一次。之後開任何新 Codex project，直接講你想整乜；Global Router 會自動揀相關 skills。**
 
 ## New machine — copy-paste once into Codex
